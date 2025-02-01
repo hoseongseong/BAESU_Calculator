@@ -43,7 +43,7 @@ async function getMatchHistory() {
   await response.json().then(async games => {
     for (var id of games) {
         getMatchInfo(id)
-        if (idx > 30) return;
+        if (idx > 50) return;
         await sleep(500)
       }
   })
