@@ -1,3 +1,15 @@
+// ***********CHANGE VALUE****************
+
+const woo_default = 0.99
+const lee_default = 1.05
+const jeon_default = 2.1
+const jang_default = 1.2
+const ryu_default = 1.26
+
+const games_default = 50
+
+// ***********CHANGE VALUE****************
+
 const RIOT_API_KEY = "RGAPI-fc77da10-bd5a-441c-af4e-92cd606b75f1"
 
 const woo = [ "PZDqLhMk5aLhT0YWnSn1yOZnTZ5a1hy4VdKq_jgslTDFhvpIgRrCQHvNIojlkDN0qGxGYEBmMWqs1A" ,
@@ -43,7 +55,7 @@ async function getMatchHistory() {
   await response.json().then(async games => {
     for (var id of games) {
         getMatchInfo(id)
-        if (idx > 50) return;
+        if (idx > games_default) return;
         await sleep(500)
       }
   })
@@ -85,7 +97,7 @@ function getDamage(game) {
 
 function isValidMatch(game) {
     console.log(game.info.gameMode)
-    if (game.info.gameMode != "ARAM") {
+    if (game.info.gameMode != "ARAM" || game.info.gameDuration < 200) {
         return false
     }
     var members = game.metadata.participants
@@ -110,6 +122,13 @@ const getButton = document.getElementById("getButton")
 const notice = document.getElementById("notice")
 const setButton = document.getElementById("setButton")
 const ctx = document.getElementById('myChart').getContext('2d');
+
+document.getElementById('wooRate').value = woo_default
+document.getElementById('leeRate').value = lee_default
+document.getElementById('jeonRate').value = jeon_default
+document.getElementById('jangRate').value = jang_default
+document.getElementById('ryuRate').value = ryu_default
+
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
