@@ -1,4 +1,5 @@
 // ***********CHANGE VALUE****************
+
 const woo_default = 0.98
 const lee_default = 1.04
 const jeon_default = 2.1
@@ -9,6 +10,7 @@ const games_default = 50
 
 const rate_default = 0.01
 const depth_default = 6
+
 // ***********CHANGE VALUE****************
 const RIOT_API_KEY = "RGAPI-fc77da10-bd5a-441c-af4e-92cd606b75f1"
 
@@ -49,7 +51,6 @@ var idx = 0;
 
 async function getMatchHistory() {
   console.log("getMatchHistory")
-  // find by jeon
   let link = `https://asia.api.riotgames.com/lol/match/v5/matches/by-puuid/vz0QxPAT6XxGCCrP63bMAlfTM_kAB8nEozegrW7zw4CFp1u7SDiOfpsGvTbc5Kjs44GOF-8ihEfRYQ/ids?type=normal&start=0&count=100&api_key=` + RIOT_API_KEY
   let response = await fetch(link)
   await response.json().then(async games => {
