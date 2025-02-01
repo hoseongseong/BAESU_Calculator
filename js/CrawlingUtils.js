@@ -1,6 +1,6 @@
 // ***********CHANGE VALUE****************
-const woo_default = 0.99
-const lee_default = 1.05
+const woo_default = 0.98
+const lee_default = 1.04
 const jeon_default = 2.1
 const jang_default = 1.2
 const ryu_default = 1.26
