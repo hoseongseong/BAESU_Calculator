@@ -44,7 +44,7 @@ async function getMatchHistory() {
     for (var id of games) {
         getMatchInfo(id)
         if (idx > 50) return;
-        await sleep(1000)
+        await sleep(500)
       }
   })
 }
