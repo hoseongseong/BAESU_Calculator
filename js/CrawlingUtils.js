@@ -118,17 +118,17 @@ getButton.addEventListener("click",async () => {
 })
 
 setButton.addEventListener("click", () => {
-    const wooRate = parseFloat(document.getElementById('wooRate').value);
-    const leeRate = parseFloat(document.getElementById('leeRate').value);
-    const jeonRate = parseFloat(document.getElementById('jeonRate').value);
-    const jangRate = parseFloat(document.getElementById('jangRate').value);
-    const ryuRate = parseFloat(document.getElementById('ryuRate').value);
+    const wooRate = parseFloat(document.getElementById('wooRate').value)
+    const leeRate = parseFloat(document.getElementById('leeRate').value)
+    const jeonRate = parseFloat(document.getElementById('jeonRate').value)
+    const jangRate = parseFloat(document.getElementById('jangRate').value)
+    const ryuRate = parseFloat(document.getElementById('ryuRate').value)
 
-    const wooCount = parseFloat(document.getElementById('result-woo').value);
-    const leeCount = parseFloat(document.getElementById('result-lee').value);
-    const jeonCount = parseFloat(document.getElementById('result-jeon').value);
-    const jangCount = parseFloat(document.getElementById('result-jang').value);
-    const ryuCount = parseFloat(document.getElementById('result-ryu').value);
+    const wooCount = document.getElementById('result-woo')
+    const leeCount = document.getElementById('result-lee')
+    const jeonCount = document.getElementById('result-jeon')
+    const jangCount = document.getElementById('result-jang')
+    const ryuCount = document.getElementById('result-ryu')
 
     var wooCnt = 0
     var leeCnt = 0
