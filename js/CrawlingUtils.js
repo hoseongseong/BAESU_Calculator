@@ -133,9 +133,9 @@ document.getElementById('ryuRate').value = ryu_default
 const myChart = new Chart(ctx, {
     type: 'bar',
     data: {
-        labels: ['우', '이', '전', '장', '유'],
+        labels: ['승수', '지훈', '지윤', '호성', '승희'],
         datasets: [{
-            label: '꼴찌 횟수',
+            label: '꼴등 횟수',
             data: [
                 0,
                 0,

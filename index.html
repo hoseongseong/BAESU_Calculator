@@ -3,90 +3,52 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>유유상종 배수 계산기</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      max-width: 800px;
-      margin: 50px auto;
-      text-align: center;
-    }
-    label {
-      display: block;
-      margin: 10px 0 5px;
-    }
-    input {
-      padding: 8px;
-      width: 100%;
-      max-width: 200px;
-      margin-bottom: 15px;
-    }
-    button {
-      padding: 10px 20px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-    button:hover {
-      background-color: #45a049;
-    }
-    .form-container {
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .form-section {
-      flex: 1;
-      max-width: 380px;
-    }
-    .form-section h1 {
-      font-size: 1.2rem;
-      margin-bottom: 10px;
-    }
-  </style>
+  <title>유유상종 칼바람 내기</title>
+  <link rel="stylesheet" href="../css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
-  <h1>유유 상종 배수 계산기</h1>
-  <br>
-  <button id="getButton">데이터 가져오기</button>
-  <button id="setButton">배수 적용하기</button>
-  <button id="calButton">배수 조정하기</button>
-  <br>
-  <p id="notice"></p>
+  <h1>유유상종 칼바람 내기</h1>
   
   <div class="form-container">
-    <!-- 배수 입력 하기 Section -->
+    <!-- 배수 입력하기 Section -->
     <div class="form-section">
-      <h1>배수 입력 하기</h1>
+      <h1>배수 입력하기</h1>
       <form id="dealForm">
-        <label for="woo">우</label>
+        <label for="woo">승수</label>
         <input type="number" id="wooRate" name="woo" placeholder="우의 배수 입력" min="0" required>
         
-        <label for="lee">이</label>
+        <label for="lee">지훈</label>
         <input type="number" id="leeRate" name="lee" placeholder="이의 배수 입력" min="0" required>
 
-        <label for="jeon">전</label>
+        <label for="jeon">지윤</label>
         <input type="number" id="jeonRate" name="jeon" placeholder="전의 배수 입력" min="0" required>
 
-        <label for="jang">장</label>
+        <label for="jang">호성</label>
         <input type="number" id="jangRate" name="jang" placeholder="장의 배수 입력" min="0" required>
 
-        <label for="ryu">유</label>
+        <label for="ryu">승희</label>
         <input type="number" id="ryuRate" name="ryu" placeholder="유의 배수 입력" min="0" required>
       </form>
     </div>
 
     <!-- 꼴찌 횟수 Section -->
     <div class="form-section">
-      <h1>꼴찌 횟수</h1>
+      <h1>꼴등 횟수</h1>
+      <div class="chart-container">
         <canvas id="myChart" width="400" height="200"></canvas>
       </div>
     </div>
   </div>
 
+  <div>
+    <button id="getButton">데이터 가져오기</button>
+    <button id="setButton">배수 적용하기</button>
+    <button id="calButton">배수 조정하기</button>
+  </div>
+
+  <p id="notice">데이터 가져온 후 배수 적용 및 조정</p>
+  
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="js/CrawlingUtils.js"></script>
 </body>

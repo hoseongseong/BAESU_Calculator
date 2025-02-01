@@ -1,0 +1,109 @@
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f4f7fc;
+  max-width: 900px;
+  margin: 50px auto;
+  padding: 20px;
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+}
+h1 {
+  font-size: 2rem;
+  color: #333;
+  margin-bottom: 30px;
+  font-weight: 600;
+}
+.form-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  margin-top: 30px;
+}
+.form-section {
+  flex: 1;
+  max-width: 380px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.form-section h1 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 15px;
+  font-weight: 500;
+}
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-size: 1rem;
+  color: #555;
+}
+input {
+  padding: 10px;
+  width: 100%;
+  max-width: 250px;
+  margin-bottom: 15px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+input:focus {
+  border-color: #6c63ff;
+  outline: none;
+}
+.chart-container {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center; /* Horizontally center the chart */
+    align-items: center; /* Vertically center the chart */
+    height: 200px; /* You can adjust this to fit your design */
+  }
+
+button {
+    padding: 12px 25px;
+    background-color: #f1c40f;  /* Bright yellow */
+    color: black;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 10px;
+    transition: background-color 0.3s, transform 0.3s;
+  }
+  
+  button:hover {
+    background-color: #f39c12; /* Darker yellow on hover */
+    transform: scale(1.05); /* Slight scale-up effect for modern feel */
+  }
+  
+  /* For specific buttons */
+  #calButton, #getButton, #setButton {
+    background-color: #f1c40f;  /* Bright yellow */
+  }
+  
+  #calButton:hover, #getButton:hover, #setButton:hover {
+    background-color: #f39c12; /* Darker yellow on hover */
+    transform: scale(1.05);
+  }
+  
+  
+  /* Notice section styling with a modern look */
+  #notice {
+    font-size: 1rem;
+    font-weight: normal;
+    color: #333;
+    background-color: #ecf0f1; /* Light gray background */
+    border: 1px solid #bdc3c7; /* Subtle gray border */
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+  }
