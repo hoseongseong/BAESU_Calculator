@@ -43,7 +43,7 @@ async function getMatchHistory() {
   await response.json().then(async games => {
     for (var id of games) {
         getMatchInfo(id)
-        if (idx > 50) return;
+        if (idx > 30) return;
         await sleep(500)
       }
   })
@@ -109,6 +109,56 @@ function isValidMatch(game) {
 const getButton = document.getElementById("getButton")
 const notice = document.getElementById("notice")
 const setButton = document.getElementById("setButton")
+const ctx = document.getElementById('myChart').getContext('2d');
+const myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ['우', '이', '전', '장', '유'],
+        datasets: [{
+            label: '꼴찌 횟수',
+            data: [
+                0,
+                0,
+                0,
+                0,
+                0
+            ],
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)'
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)'
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        plugins: {
+            datalabels: {
+                color: 'black',
+                font: {
+                    weight: 'bold',
+                    size: 14
+                },
+                anchor: 'end',
+                align: 'top'
+            }
+        },
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
 
 getButton.addEventListener("click",async () => {
     idx = 0;
@@ -123,12 +173,6 @@ setButton.addEventListener("click", () => {
     const jeonRate = parseFloat(document.getElementById('jeonRate').value)
     const jangRate = parseFloat(document.getElementById('jangRate').value)
     const ryuRate = parseFloat(document.getElementById('ryuRate').value)
-
-    const wooCount = document.getElementById('result-woo')
-    const leeCount = document.getElementById('result-lee')
-    const jeonCount = document.getElementById('result-jeon')
-    const jangCount = document.getElementById('result-jang')
-    const ryuCount = document.getElementById('result-ryu')
 
     var wooCnt = 0
     var leeCnt = 0
@@ -161,11 +205,13 @@ setButton.addEventListener("click", () => {
                 ryuCnt++;
             }
         }
-        wooCount.innerHTML = wooCnt
-        leeCount.innerHTML = leeCnt
-        jeonCount.innerHTML = jeonCnt
-        jangCount.innerHTML = jangCnt
-        ryuCount.innerHTML = ryuCnt
+        drawChart(wooCnt, leeCnt, jeonCnt, jangCnt, ryuCnt)
     }
 });
+
+function drawChart(wr, lr, jr, jjr, rr) {
+    console.log("UPDATE")
+    myChart.data.datasets[0].data = [wr, lr, jr, jjr, rr]
+    myChart.update();
+}
 

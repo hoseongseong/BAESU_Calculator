@@ -45,20 +45,8 @@
       font-size: 1.2rem;
       margin-bottom: 10px;
     }
-    #resultForm {
-      text-align: left;
-    }
-    #resultForm p {
-     display: inline-block;
-      width: 100%;
-     text-align: center;
-    }
-    #resultForm label {
-     display: inline-block;
-      width: 100%;
-     text-align: center;
-    }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <h1>유유 상종 배수 계산기</h1>
@@ -77,37 +65,23 @@
         <input type="number" id="wooRate" name="woo" placeholder="우의 배수 입력" min="0" value="1" required>
         
         <label for="lee">이</label>
-        <input type="number" id="leeRate" name="lee" placeholder="이의 배수 입력" min="0" value="1" required>
+        <input type="number" id="leeRate" name="lee" placeholder="이의 배수 입력" min="0" value="1.05" required>
 
         <label for="jeon">전</label>
-        <input type="number" id="jeonRate" name="jeon" placeholder="전의 배수 입력" min="0" value="1" required>
+        <input type="number" id="jeonRate" name="jeon" placeholder="전의 배수 입력" min="0" value="1.7" required>
 
         <label for="jang">장</label>
-        <input type="number" id="jangRate" name="jang" placeholder="장의 배수 입력" min="0" value="1" required>
+        <input type="number" id="jangRate" name="jang" placeholder="장의 배수 입력" min="0" value="1.09" required>
 
         <label for="ryu">유</label>
-        <input type="number" id="ryuRate" name="ryu" placeholder="유의 배수 입력" min="0" value="1" required>
+        <input type="number" id="ryuRate" name="ryu" placeholder="유의 배수 입력" min="0" value="1.3" required>
       </form>
     </div>
 
     <!-- 꼴찌 횟수 Section -->
     <div class="form-section">
       <h1>꼴찌 횟수</h1>
-      <div id="resultForm">
-        <label for="woo">우</label>
-        <p id="result-woo">-</p>
-    
-        <label for="lee">이</label>
-        <p id="result-lee">-</p>
-    
-        <label for="jeon">전</label>
-        <p id="result-jeon">-</p>
-    
-        <label for="jang">장</label>
-        <p id="result-jang">-</p>
-    
-        <label for="ryu">유</label>
-        <p id="result-ryu">-</p>
+        <canvas id="myChart" width="400" height="200"></canvas>
       </div>
     </div>
   </div>
