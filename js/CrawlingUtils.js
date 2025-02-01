@@ -1,5 +1,4 @@
 // ***********CHANGE VALUE****************
-
 const woo_default = 0.99
 const lee_default = 1.05
 const jeon_default = 2.1
@@ -8,8 +7,9 @@ const ryu_default = 1.26
 
 const games_default = 50
 
+const rate_default = 0.01
+const depth_default = 6
 // ***********CHANGE VALUE****************
-
 const RIOT_API_KEY = "RGAPI-fc77da10-bd5a-441c-af4e-92cd606b75f1"
 
 const woo = [ "PZDqLhMk5aLhT0YWnSn1yOZnTZ5a1hy4VdKq_jgslTDFhvpIgRrCQHvNIojlkDN0qGxGYEBmMWqs1A" ,
@@ -121,6 +121,7 @@ function isValidMatch(game) {
 const getButton = document.getElementById("getButton")
 const notice = document.getElementById("notice")
 const setButton = document.getElementById("setButton")
+const calButton = document.getElementById("calButton")
 const ctx = document.getElementById('myChart').getContext('2d');
 
 document.getElementById('wooRate').value = woo_default
@@ -186,7 +187,21 @@ getButton.addEventListener("click",async () => {
     notice.innerHTML = "Data 가져오기 완료. 가져온 게임 수 : " + (idx + 1) 
 })
 
+calButton.addEventListener("click",async () => {
+    if (idx==0) {
+        notice.innerHTML = "Data 부터 가져와주세요"
+    } else {
+        notice.innerHTML = "자동으로 배수를 계산 중"
+        await autoRate()
+        notice.innerHTML = "자동 배수 계산 완료"
+    }
+})
+
 setButton.addEventListener("click", () => {
+    draw()
+});
+
+function draw() {
     const wooRate = parseFloat(document.getElementById('wooRate').value)
     const leeRate = parseFloat(document.getElementById('leeRate').value)
     const jeonRate = parseFloat(document.getElementById('jeonRate').value)
@@ -226,7 +241,7 @@ setButton.addEventListener("click", () => {
         }
         drawChart(wooCnt, leeCnt, jeonCnt, jangCnt, ryuCnt)
     }
-});
+}
 
 function drawChart(wr, lr, jr, jjr, rr) {
     console.log("UPDATE")
@@ -234,3 +249,90 @@ function drawChart(wr, lr, jr, jjr, rr) {
     myChart.update();
 }
 
+var min = 1000000;
+var best = [0, 0, 0, 0, 0]
+
+function autoRate() {
+    const wooRate = parseFloat(document.getElementById('wooRate').value)
+    const leeRate = parseFloat(document.getElementById('leeRate').value)
+    const jeonRate = parseFloat(document.getElementById('jeonRate').value)
+    const jangRate = parseFloat(document.getElementById('jangRate').value)
+    const ryuRate = parseFloat(document.getElementById('ryuRate').value)
+
+    const rates = [wooRate, leeRate, jeonRate, jangRate, ryuRate]
+
+    min = 1000000
+    best = [wooRate, leeRate, jeonRate, jangRate, ryuRate]
+    calculate(rates)
+    bt(rates, 0)
+    console.log("finsith")
+    console.log(best)
+    document.getElementById('wooRate').value = best[0]
+    document.getElementById('leeRate').value = best[1]
+    document.getElementById('jeonRate').value = best[2]
+    document.getElementById('jangRate').value = best[3]
+    document.getElementById('ryuRate').value = best[4]
+
+    draw()
+}
+
+function bt(rates, depth) {
+    calculate(rates)
+    if (depth >= depth_default) return;
+    for(var i=0;i<5;i++) {
+        rates[i] += rate_default
+        bt(rates, depth+1)
+
+        rates[i] -= rate_default
+        rates[i] -= rate_default
+        bt(rates, depth+1)
+        
+        rates[i] += rate_default
+    }
+}
+
+function calculate(rates) {
+    var cnt = [0, 0, 0, 0, 0]
+    for (var i = 0;i < idx;i++) {
+        var game = rawData[i];
+        var wooResult = game.woo * rates[0]
+        var leeResult = game.lee * rates[1]
+        var jeonResult = game.jeon * rates[2]
+        var jangResult = game.jang * rates[3]
+        var ryuResult = game.ryu * rates[4]
+
+        var minResult = Math.min(wooResult, leeResult, jeonResult, jangResult, ryuResult)
+
+        if (minResult == wooResult) {
+            cnt[0]++;
+        } else if (minResult == leeResult) {
+            cnt[1]++;
+        } else if (minResult == jeonResult) {
+            cnt[2]++;
+        } else if (minResult == jangResult) {
+            cnt[3]++;
+        } else if (minResult == ryuResult) {
+            cnt[4]++;
+        }
+    }
+    var val = std(cnt)
+    if(val < min) {
+        min = val
+        best[0] = rates[0]
+        best[1] = rates[1]
+        best[2] = rates[2]
+        best[3] = rates[3]
+        best[4] = rates[4]
+        console.log("UPDATE")
+        console.log(min)
+        console.log(best)
+    }
+}
+
+function std(numbers) {
+    const n = numbers.length;
+    const mean = numbers.reduce((sum, num) => sum + num, 0) / n;
+    const variance = numbers.reduce((sum, num) => sum + Math.pow(num - mean, 2), 0) / n;
+    const standardDeviation = Math.sqrt(variance);
+    return standardDeviation;
+  }
