@@ -12,7 +12,7 @@ const rate_default = 0.01
 const depth_default = 6
 
 // ***********CHANGE VALUE****************
-const RIOT_API_KEY = "RGAPI-fc77da10-bd5a-441c-af4e-92cd606b75f1"
+var RIOT_API_KEY = "RGAPI-3c3be1c5-ebec-4cc8-863f-c7f2c8df3040"
 
 const woo = [ "PZDqLhMk5aLhT0YWnSn1yOZnTZ5a1hy4VdKq_jgslTDFhvpIgRrCQHvNIojlkDN0qGxGYEBmMWqs1A" ,
     "aimWpFSEwMQDNjJKk1MOWSIkFR5dBixBiE3fL1SRnDO4y-iub8pk19jSQseN4oCvuqxdzEdpaCAC5Q"
@@ -183,6 +183,7 @@ const myChart = new Chart(ctx, {
 
 getButton.addEventListener("click",async () => {
     idx = 0;
+    RIOT_API_KEY = document.getElementById('API').value
     notice.innerHTML = "Data 가져오는 중"
     await getMatchHistory()
     notice.innerHTML = "Data 가져오기 완료. 가져온 게임 수 : " + (idx + 1) 
